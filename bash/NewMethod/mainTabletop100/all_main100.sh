@@ -1,0 +1,3 @@
+bash bash/NewMethod/mainTabletop100/NewMethod_GoogleNews_top100_cluster30_main.sh
+bash bash/NewMethod/mainTabletop100/NewMethod_SearchSnippets_top100_cluster30_main.sh
+
