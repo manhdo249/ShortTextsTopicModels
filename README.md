@@ -1,4 +1,4 @@
-# This repo forked from TopMost!
+# This repo about my Bachelor project!
 
 ## Preparing Libraries
 
