@@ -1,51 +1,42 @@
-# Data Processing Pipeline
+# This repo forked from TopMost!
 
-This document describes the steps involved in our data processing pipeline. The following sections detail each stage of the process from data cleaning to global clustering.
+## Preparing Libraries
 
----
+1. Python 3.10.14
+2. Install the following libraries
+    ```
+    numpy==1.26.3
+    scipy==1.10.1
+    sentence-transformers==2.7.0
+    torchvision==0.19.1
+    gensim==4.3.3
+    scikit-learn==1.5.1
+    tqdm==4.66.5
+    wandb==0.18.1
+    topmost==0.0.5
+    ```
+2. Install java
+3. Download [this java jar](https://hobbitdata.informatik.uni-leipzig.de/homes/mroeder/palmetto/palmetto-0.1.0-jar-with-dependencies.jar) to `./topmost/evaluations` and rename it to `palmetto.jar`
+4. Download and extract [this processed Wikipedia corpus](https://hobbitdata.informatik.uni-leipzig.de/homes/mroeder/palmetto/Wikipedia_bd.zip) to `./topmost/evaluations/wiki_data` as an external reference corpus.
 
-## 1. Vocabulary Filtering
+    Here is the folder structure:
+    ```
+        |- topmost
+            |- evaluations
+                | - wiki_data
+                    | - wikipedia_bd/
+                    | - wikipedia_bd.histogram
+                |- palmetto.jar
+            
+    ```
 
-- **Objective:** Remove noise and focus on frequently occurring words.
-- **Process:**  
-  - For each dataset, filter out words that appear less than 3 times.
-  - This step helps in reducing noise and ensuring that only the most common words are considered for further analysis.
+## Running
+To run and evaluate our model, run the following command:
 
----
+```
+bash bash/NewMethod/top100/NewMethod_Biomedical_top100_cluster50.sh
+```
 
-## 2. Document Filtering
 
-- **Objective:** Ensure documents are meaningful for analysis.
-- **Process:**  
-  - Remove any document that contains fewer than 2 words.
-  - Documents that are too short do not provide sufficient context or meaning for analysis.
-
----
-
-## 3. Global Clustering
-
-### 3.1. Embedding Generation
-
-- **Pretrained Model:**  
-  - We utilize the `all-MiniLM-L6-v2` model to convert documents into semantic representations (embeddings).
-- **Purpose:**  
-  - These embeddings capture the underlying semantic meaning of the documents, allowing us to perform clustering based on content similarity.
-
-### 3.2. Clustering Algorithms
-
-- **Algorithms Used:**  
-  - **K-Means:** Groups similar documents into clusters based on their embeddings.
-  - **UMAP:** Reduces the dimensionality of embeddings for visualization and further analysis.
-- **Outcome:**  
-  - Documents are grouped into clusters, facilitating a global overview of similar content across the dataset.
-
----
-
-## Summary
-
-This pipeline ensures that our data is preprocessed effectively by:
-- Filtering out infrequent words and extremely short documents,
-- Converting documents into robust semantic embeddings using a state-of-the-art pretrained model,
-- Clustering the documents to identify meaningful groups using K-Means and UMAP.
-
-Each step is designed to enhance the quality of the data analysis and improve the interpretability of the results.
+## Acknowledgement
+Some part of this implementation is based on [TopMost](https://github.com/BobXWu/TopMost). We also utilizes [Palmetto](https://github.com/dice-group/Palmetto) for the evaluation of topic coherence.

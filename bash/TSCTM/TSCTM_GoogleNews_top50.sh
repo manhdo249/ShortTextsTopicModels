@@ -1,11 +1,14 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+#!/bin/bash
+# Running
+set -e 
+
+export WANDB_API_KEY=your_api_key_here  # Replace by your API key
 
 MODEL_NAME=TSCTM
 NUM_TOPICS=50
-DATASET=GoogleNewsCluster
-GLOBAL_DIR=umap_globalcluster150
+DATASET=GoogleNews
 
-WANDB_PROJECT=TSCTM_50topics_GoogleNews
+WANDB_PROJECT=ShortTextTM_240919
 
 for weight_contrast in 1.0
 do

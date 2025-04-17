@@ -1,11 +1,18 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+#!/bin/bash
+# DONE
+
+set -e 
+
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
 
 MODEL_NAME=FASTopic
 NUM_TOPICS=50
-DATASET=GoogleNewsCluster
-GLOBAL_DIR=umap_globalcluster150
+DATASET=GoogleNews
 
-WANDB_PROJECT=FASTopic_50topics_GoogleNews
+WANDB_PROJECT=ShortTextTM_240919
 
 for seed in $(seq 0 10)
 do

@@ -3,9 +3,9 @@ export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
 MODEL_NAME=ETM
 NUM_TOPICS=100
 DATASET=GoogleNewsCluster
-GLOBAL_DIR=umap_globalcluster150
+GLOBAL_DIR=umap_globalcluster200
 
-WANDB_PROJECT=ETM_100topics_GoogleNews
+WANDB_PROJECT=ETM_new_GoogleNews100_2501
 
 
 for dropout in 0.0 0.1

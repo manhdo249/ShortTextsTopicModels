@@ -5,9 +5,8 @@ NUM_TOPICS=100
 NUM_CLUSTERS=30
 SINKHORN_MAX_ITER=100
 DATASET=GoogleNewsCluster
-GLOBAL_DIR=umap_globalcluster150
-
-WANDB_PROJECT=NewMethod_100topics_GoogleNews
+GLOBAL_DIR=umap_globalcluster200
+WANDB_PROJECT=NewMethod_GoogleNews_top100_cluster30_7_12
 
 for weight_ot_topic_cluster in 0.01 1 0
 do

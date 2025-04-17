@@ -1,27 +1,32 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
-
-MODEL_NAME=ECRTM
-NUM_TOPICS=100 
-DATASET=BiomedicalCluster
-GLOBAL_DIR=umap_globalcluster50
-
-WANDB_PROJECT=ECRTM_100topics_Biomedical
+#!/bin/bash
+# Running
+set -e 
 
 
-for weight_loss_ECR in 30.0 40.0 20.0 10.0 50.0
+MODEL_NAME=TSCTM
+NUM_TOPICS=100
+DATASET=Biomedical
+
+WANDB_PROJECT=ShortTextTM_240919
+
+
+for weight_contrast in 1.0
 do
-    for seed in $(seq 0 3)
-    do 
-        CUDA_VISIBLE_DEVICES=0 python main.py  \
-                            --model $MODEL_NAME \
-                            --weight_loss_ECR $weight_loss_ECR \
-                            --pretrained_WE \
-                            --num_topics $NUM_TOPICS \
-                            --dataset $DATASET \
-                            --seed $seed \
-                            --wandb_on \
-                            --wandb_prj $WANDB_PROJECT \
-                            --wandb_name "${MODEL_NAME}_${DATASET}_top${NUM_TOPICS}_weight_loss_ECR${weight_loss_ECR}_seed${seed}" \
-                            --verbose
+    for temperature in 0.5
+    do
+        for seed in $(seq 0 2)
+        do 
+            CUDA_VISIBLE_DEVICES=0 python main.py  \
+                                --model $MODEL_NAME \
+                                --weight_contrast $weight_contrast \
+                                --temperature $temperature \
+                                --num_topics $NUM_TOPICS \
+                                --dataset $DATASET \
+                                --seed $seed \
+                                --wandb_on \
+                                --wandb_prj $WANDB_PROJECT \
+                                --wandb_name "${MODEL_NAME}_${DATASET}_top${NUM_TOPICS}_weight_contrast${weight_contrast}_temperature${temperature}_seed${seed}" \
+                                --verbose
+        done
     done
 done

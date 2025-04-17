@@ -1,27 +1,28 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+#!/bin/bash
+# DONE
 
-MODEL_NAME=ECRTM
+set -e 
+
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
+
+MODEL_NAME=FASTopic
 NUM_TOPICS=50
-DATASET=BiomedicalCluster
-GLOBAL_DIR=umap_globalcluster50
+DATASET=Biomedical
 
-WANDB_PROJECT=ECRTM_50topics_Biomedical
+WANDB_PROJECT=ShortTextTM_240919
 
-
-for weight_loss_ECR in 30.0 40.0 20.0 10.0 50.0
+for seed in $(seq 0 10)
 do
-    for seed in $(seq 0 3)
-    do 
-        CUDA_VISIBLE_DEVICES=0 python main.py  \
-                            --model $MODEL_NAME \
-                            --weight_loss_ECR $weight_loss_ECR \
-                            --pretrained_WE \
-                            --num_topics $NUM_TOPICS \
-                            --dataset $DATASET \
-                            --seed $seed \
-                            --wandb_on \
-                            --wandb_prj $WANDB_PROJECT \
-                            --wandb_name "${MODEL_NAME}_${DATASET}_top${NUM_TOPICS}_weight_loss_ECR${weight_loss_ECR}_seed${seed}" \
-                            --verbose
-    done
+    python main.py  \
+        --model $MODEL_NAME \
+        --num_topics $NUM_TOPICS \
+        --dataset $DATASET \
+        --seed $seed \
+        --wandb_on \
+        --wandb_prj $WANDB_PROJECT \
+        --wandb_name "${MODEL_NAME}_${DATASET}_top${NUM_TOPICS}_seed${seed}" \
+        --verbose 
 done

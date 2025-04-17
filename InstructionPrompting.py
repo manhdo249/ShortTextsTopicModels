@@ -1,0 +1,5 @@
+# 4o-mini
+prompt = f'''You are a helpful assistant evaluating the top words of a topic model output for a given topic. Please rate how related the following words are to each other on a scale from 1 to 3 ("1" = not very related, "2" = moderately related, "3" = very related).
+    Topic: {','.join(words)}.
+    Reply with a single number, indicating the overall appropriateness of the topic.
+    '''

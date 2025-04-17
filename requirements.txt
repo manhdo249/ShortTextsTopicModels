@@ -7,3 +7,4 @@ scikit-learn==1.5.1
 tqdm==4.66.5
 wandb==0.18.1
 topmost==0.0.5
+geomloss==0.2.6

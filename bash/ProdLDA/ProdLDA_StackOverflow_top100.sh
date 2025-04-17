@@ -1,27 +1,28 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+#!/bin/bash
+# DONE
 
-MODEL_NAME=ECRTM
+set -e 
+
+
+MODEL_NAME=ProdLDA
 NUM_TOPICS=100
-DATASET=StackOverflowCluster
-GLOBAL_DIR=umap_globalcluster30
+DATASET=StackOverflow
 
-WANDB_PROJECT=ECRTM_100topics_StackOverflow
+WANDB_PROJECT=ShortTextTM_240919
 
-
-for weight_loss_ECR in 30.0 40.0 20.0 10.0 50.0
+for dropout in 0.1 0.2 0.3 0.0
 do
-    for seed in $(seq 0 3)
-    do 
+    for seed in $(seq 0 10)
+    do
         CUDA_VISIBLE_DEVICES=0 python main.py  \
                             --model $MODEL_NAME \
-                            --weight_loss_ECR $weight_loss_ECR \
-                            --pretrained_WE \
+                            --dropout $dropout \
                             --num_topics $NUM_TOPICS \
                             --dataset $DATASET \
                             --seed $seed \
                             --wandb_on \
                             --wandb_prj $WANDB_PROJECT \
-                            --wandb_name "${MODEL_NAME}_${DATASET}_top${NUM_TOPICS}_weight_loss_ECR${weight_loss_ECR}_seed${seed}" \
-                            --verbose
+                            --wandb_name "${MODEL_NAME}_${DATASET}_top${NUM_TOPICS}_dropout${dropout}_seed${seed}" \
+                            --verbose 
     done
 done

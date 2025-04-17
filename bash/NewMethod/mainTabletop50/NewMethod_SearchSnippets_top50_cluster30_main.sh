@@ -4,10 +4,8 @@ MODEL_NAME=NewMethod
 NUM_TOPICS=50
 NUM_CLUSTERS=30
 SINKHORN_MAX_ITER=100
-DATASET=SearchSnippetsCluster
-GLOBAL_DIR=umap_globalcluster60
-
-WANDB_PROJECT=NewMethod_50topics_SearchSnippets
+DATASET=SearchSnippets
+WANDB_PROJECT=NewMethod_SearchSnippets_top50_cluster30_7_12
 
 for weight_ot_topic_cluster in 0.01 1 0
 do

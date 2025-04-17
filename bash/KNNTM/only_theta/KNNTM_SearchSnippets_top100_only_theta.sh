@@ -1,11 +1,13 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+set -e 
+
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
 
 MODEL_NAME=KNNTM
 NUM_TOPICS=100
-DATASET=SearchSnippetsCluster
-GLOBAL_DIR=umap_globalcluster60
-
-WANDB_PROJECT=KNNTM_100topics_SearchSnippets_only_theta
+DATASET=SearchSnippets
+WANDB_PROJECT=ShortTextTM_240919
 alpha=1.0
 num_k=30
 

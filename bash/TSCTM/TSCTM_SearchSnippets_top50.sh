@@ -1,11 +1,13 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+#!/bin/bash
+# Running
+set -e 
+
 
 MODEL_NAME=TSCTM
 NUM_TOPICS=50
-DATASET=SearchSnippetsCluster
-GLOBAL_DIR=umap_globalcluster60
+DATASET=SearchSnippets
 
-WANDB_PROJECT=TSCTM_50topics_SearchSnippets
+WANDB_PROJECT=ShortTextTM_240919
 
 
 for weight_contrast in 1.0

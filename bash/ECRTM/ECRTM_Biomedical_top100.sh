@@ -1,16 +1,19 @@
-export WANDB_API_KEY="c404830b3fe76c9bae6be1dc53effe3226b28175"
+#!/bin/bash
+# ATUNG
+
+set -e 
+
 
 MODEL_NAME=ECRTM
-NUM_TOPICS=100 
-DATASET=BiomedicalCluster
-GLOBAL_DIR=umap_globalcluster50
+NUM_TOPICS=100
+DATASET=Biomedical
 
-WANDB_PROJECT=ECRTM_100topics_Biomedical
+WANDB_PROJECT=ShortTextTM_240919
 
 
 for weight_loss_ECR in 30.0 40.0 20.0 10.0 50.0
 do
-    for seed in $(seq 0 3)
+    for seed in $(seq 0 10)
     do 
         CUDA_VISIBLE_DEVICES=0 python main.py  \
                             --model $MODEL_NAME \
